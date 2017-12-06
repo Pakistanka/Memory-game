@@ -10,8 +10,7 @@
 let Game = {
 
   init: function(cards){
-      this.$game = $(".game");
-      this.restartButton = $(".fa-repeat");
+      //this.game = $(".game");
       this.cardsArray = $.merge(cards, cards);
       this.shuffleCards(this.cardsArray);
       this.setup();
@@ -35,9 +34,11 @@ let Game = {
   },
 
   restart: function() {
-
-    restartButton.reset();
-    console.log('New game!')
+    let restartButton = $(".fa-repeat");
+    restartButton.on('click', function(){
+      this.reset();
+      console.log('New game!');
+    });
   },
 
   finishGame: function() {
