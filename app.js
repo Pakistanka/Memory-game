@@ -1,11 +1,84 @@
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-
+const cards = [
+  {
+    name: 'diamond',
+    icon: 'fa fa-diamond',
+    class: 'card'
+  },
+  {
+    name: 'diamond',
+    class: 'card',
+    icon: 'fa fa-diamond'
+  },
+  {
+    name: 'plane',
+    class: 'card',
+    icon: 'fa fa-paper-plane-o'
+  },
+  {
+    name: 'plane',
+    class: 'card',
+    icon: 'fa fa-paper-plane-o'
+  },
+  {
+    name: 'anchor',
+    class: 'card',
+    icon: 'fa fa-anchor'
+  },
+  {
+    name: 'anchor',
+    class: 'card',
+    icon: 'fa fa-anchor'
+  },
+  {
+    name: 'bolt',
+    class: 'card',
+    icon: 'fa fa-bolt'
+  },
+  {
+    name: 'bolt',
+    class: 'card',
+    icon: 'fa fa-bolt'
+  },
+  {
+    name: 'cube',
+    class: 'card',
+    icon: 'fa fa-cube'
+  },
+  {
+    name: 'cube',
+    class: 'card',
+    icon: 'fa fa-cube'
+  },
+  {
+    name: 'leaf',
+    class: 'card',
+    icon: 'fa fa-leaf'
+  },
+  {
+    name: 'leaf',
+    class: 'card',
+    icon: 'fa fa-leaf'
+  },
+  {
+    name: 'bicycle',
+    class: 'card',
+    icon: 'fa fa-bicycle'
+  },
+  {
+    name: 'bicycle',
+    class: 'card',
+    icon: 'fa fa-bicycle'
+  },
+  {
+    name: 'bomb',
+    class: 'card',
+    icon: 'fa fa-bomb'
+  },
+  {
+    name: 'bomb',
+    class: 'card',
+    icon: 'fa fa-bomb'
+  }];
 
 let Game = {
 
@@ -19,7 +92,7 @@ let Game = {
   //Greate HTML for each card
   buildHTML: function() {
     let fragment = "";
-    this.$cards.each(function(x, y){
+    this.cards.each(function(x, y){
       fragment += $('.card')
     });
     return fragment;
@@ -65,49 +138,11 @@ let Game = {
 
 
 
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
-
-let cards = [
-{
-  name: 'fa-diamond',
-  id: 1
-}, 
-{
-  name: 'fa-paper-plane-o',
-  id: 2
-},
-{
-  name: 'fa-anchor',
-  id: 3
-},
-{
-  name: 'fa-bolt',
-  id: 4
-},
-{
-  name: 'fa-cube',
-  id: 5
-},
-{
-  name: 'fa-leaf',
-  id: 6
-},
-{
-  name: 'fa-bicycle',
-  id: 7
-},
-{
-  name: 'fa-bomb',
-  id: 8
-}];
+/*  openCards: [],
+    state: ['open', 'match', 'mismatch'],
+    counter: 0,
+    moves: 0,
+    clicks: 0,
+    stars: 3,
+    player: undefined
+};*/
