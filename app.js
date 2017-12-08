@@ -1,4 +1,16 @@
+/*To create a grid, 
+create an array that has 8 different icons twice (total of 16 entries in the array).
+The, use the shuffle function to clear deck and recreate <li> tags.
+Use jQuery. That'll get you started. 
+In this project, I will not code but will only guide you. 
+Don't fear failure at all. 
+Failures will come, frustrations will come, 
+and I know you will go through the failures and frustrations 
+nd get through this project.*/
+
+
 const cards = [
+  //  A list that holds all cards
   {
     name: 'diamond',
     icon: 'fa fa-diamond',
@@ -80,69 +92,3 @@ const cards = [
     icon: 'fa fa-bomb'
   }];
 
-let Game = {
-
-  init: function(cards){
-      //this.game = $(".game");
-      this.cardsArray = $.merge(cards, cards);
-      this.shuffleCards(this.cardsArray);
-      this.setup();
-    },
-
-  //Greate HTML for each card
-  buildHTML: function() {
-    let fragment = "";
-    this.cards.each(function(x, y){
-      fragment += $('.card')
-    });
-    return fragment;
-  },
-
-  counter: function() {
-    let moves = $('.moves');
-    if(restart() && setup()){
-      moves = null;
-      moves += 1;
-    }
-  },
-
-  restart: function() {
-    let restartButton = $(".fa-repeat");
-    restartButton.on('click', function(){
-      this.reset();
-      console.log('New game!');
-    });
-  },
-
-  finishGame: function() {
-
-  },
-
-  // Shuffle function from http://stackoverflow.com/a/2450976
-  shuffle: function(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-},
-
-
-};
-
-
-
-/*  openCards: [],
-    state: ['open', 'match', 'mismatch'],
-    counter: 0,
-    moves: 0,
-    clicks: 0,
-    stars: 3,
-    player: undefined
-};*/
