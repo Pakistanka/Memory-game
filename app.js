@@ -8,8 +8,8 @@ Failures will come, frustrations will come,
 and I know you will go through the failures and frustrations 
 nd get through this project.*/
 
-
-const cards = [
+const memoryModel = {
+  cards: [
   //  A list that holds all cards
   {
     name: 'diamond',
@@ -90,5 +90,51 @@ const cards = [
     name: 'bomb',
     class: 'card',
     icon: 'fa fa-bomb'
-  }];
+  }],
+    openCards: [],
+    state: ['open', 'match', 'mismatch'],
+    counter: 0,
+    moves: 0,
+    clicks: 0,
+    stars: 3
+  };
+  
 
+// create grid
+const deck = $('.deck')[0];
+
+for (let card of cards) {
+  // create li and i elements
+  let liElem = $('li');
+  let iElem = $('i');
+
+  // Assigns different values (classes, names...)
+  liElem.classList.add('match', 'open', 'show');
+  //iElem.className = card.icon;
+
+  //Append elements
+  liElem.appendChild(iElem);
+  deck.appendChild(liElem);
+
+  //Sets up an event listener to a card
+  liElem.on('click', function(){
+
+  });
+
+}
+
+  // Shuffle function from http://stackoverflow.com/a/2450976
+  shuffle: function(array) {
+    let currentIndex = array.length, 
+        temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+},
