@@ -145,7 +145,15 @@ const memoryFunction = {
     }
 
     return array;
-  }
+  },
+
+  incrementCount() {
+      return memoryModel.counter += 2;
+  },
+
+  incrementMoves() {
+    return memoryModel.moves += 1;
+  },
 };
 
 const View = {
@@ -212,12 +220,17 @@ const View = {
           let card2 = openCards[1];
 
           if(card1.classList.contains(card.name) && card2.classList.contains(card.name)) {
+            
+            memoryFunction.incrementCount();
             card1.classList.add('match');
             card2.classList.add('match');
             memoryFunction.clearList(openCards);
 
             View.movesCount.textContent = memoryFunction.showNumberOfMoves();
           } else {
+
+            card1.classList.add(mismatch);
+            card2.classList.add(mismatch);
             View.movesCount.textContent = memoryFunction.showNumberOfMoves(); 
           }
         }
