@@ -1,13 +1,3 @@
-/*To create a grid, 
-create an array that has 8 different icons twice (total of 16 entries in the array).
-The, use the shuffle function to clear deck and recreate <li> tags.
-Use jQuery. That'll get you started. 
-In this project, I will not code but will only guide you. 
-Don't fear failure at all. 
-Failures will come, frustrations will come, 
-and I know you will go through the failures and frustrations 
-nd get through this project.*/
-
 const memoryModel = {
   cards: [
   //  A list that holds all cards
@@ -99,31 +89,47 @@ const memoryModel = {
     stars: 3
   };
   
+const memoryFunction = {
+  init() {
+    View.init();
+  },
 
-// create grid
-const deck = $('.deck')[0];
+  //get all cards from list of cards
+  getAllCards() {
+    return memoryModel.cards;
+  },
 
-for (let card of cards) {
-  // create li and i elements
-  let liElem = $('li');
-  let iElem = $('i');
+  //create a list of open cards
+  getOpenCards(){
+    return memoryModel.openCards;
+  },
 
-  // Assigns different values (classes, names...)
-  liElem.classList.add('match', 'open', 'show');
-  //iElem.className = card.icon;
+  //create a function which return number of stars
+  getStars() {
+    return memoryModel.stars;
+  },
 
-  //Append elements
-  liElem.appendChild(iElem);
-  deck.appendChild(liElem);
+  //count a number of Moves if user click of different cards 2 times
+  showNumberOfMoves() {
+    let moves = memoryModel.moves;
+    moves % 2 === 0 ? moves /= 2 : null;
+    return moves;
+  },
 
-  //Sets up an event listener to a card
-  liElem.on('click', function(){
+  openCard() {
+    return memoryModel.state[0];
+  },
 
-  });
+  matchedCard() {
+    return memoryModel.state[1];
+  },
 
-}
+  mismatchCard() {
+    return memoryModel.state[2];
+  },
+ 
 
-  // Shuffle function from http://stackoverflow.com/a/2450976
+ // Shuffle function from http://stackoverflow.com/a/2450976
   shuffle: function(array) {
     let currentIndex = array.length, 
         temporaryValue, randomIndex;
@@ -137,4 +143,85 @@ for (let card of cards) {
     }
 
     return array;
-},
+  }
+};
+
+const View = {
+  init() {
+    this.deck = document.getElementsByClassName('deck')[0];
+    this.movesCount = document.getElementsByClassName('moves')[0];
+
+    const restartButton = document.getElementsByClassName('restart')[0];
+    restartButton.addEventListener('click', () => memoryFunction.reloadGame()); 
+
+    this.workWithDeckAndCards();   
+  },
+
+  workWithDeckAndCards: function() {
+    //card list
+    const cards = memoryFunction.getAllCards();
+    const OpenCards = memoryFunction.getOpenCards();
+
+    //shuffle Cards
+    memoryFunction.shuffle(cards);
+
+    //card states
+    const open = memoryFunction.openCard();
+    const match = memoryFunction.matchedCard();
+    const mismatch = memoryFunction.mismatchCard();
+
+    for (let card of cards) {
+      // create li and i elements
+      let liElem = $('li');
+      let iElem = $('i');
+
+      // Assigns different values (classes, names...)
+      liElem.classList.add(card.class, card.name);
+      //iElem.className = card.icon;
+
+      //Append elements
+      liElem.appendChild(iElem);
+      this.deck.appendChild(liElem);
+
+      //Sets up an event listener to a card
+      liElem.addEventListener('click', function(){
+
+        //Get a number of stars
+        let stars = memoryFunction.getStars();
+
+        //Get a number of moves
+        let numOfMoves = memoryFunction.showNumberOfMoves();
+
+        //Depending stars from moves
+        if(36 > numOfMoves > 24) {
+
+        } else if (numOfMoves > 36) {
+
+        }
+        liElem.classList.add('open');
+
+        //Add card to a list of openCards
+        openCards.push(liElem);
+
+        //Check if the cards similar of not
+        if(OpenCards.length === 2) {
+          let card1 = openCards[0];
+          let card2 = openCards[1];
+
+          if(card1.classList.contains(card.name) && card2.classList.contains(card.name)) {
+            card1.classList.add('match');
+            card2.classList.add('match');
+            memoryFunction.clearList(openCards);
+
+            View.movesCount.textContent = memoryFunction.showNumberOfMoves();
+          } else {
+            View.movesCount.textContent = memoryFunction.showNumberOfMoves(); 
+          }
+        }
+      });
+    }
+};
+
+
+
+  
