@@ -1,3 +1,5 @@
+'use strict';
+
 const memoryModel = {
   cards: [
   //  A list that holds all cards
@@ -150,6 +152,7 @@ const View = {
   init() {
     this.deck = document.getElementsByClassName('deck')[0];
     this.movesCount = document.getElementsByClassName('moves')[0];
+    this.scorePanel = document.getElementsByClassName('score-panel')[0];
 
     const restartButton = document.getElementsByClassName('restart')[0];
     restartButton.addEventListener('click', () => memoryFunction.reloadGame()); 
@@ -160,7 +163,7 @@ const View = {
   workWithDeckAndCards: function() {
     //card list
     const cards = memoryFunction.getAllCards();
-    const OpenCards = memoryFunction.getOpenCards();
+    const openCards = memoryFunction.getOpenCards();
 
     //shuffle Cards
     memoryFunction.shuffle(cards);
@@ -192,19 +195,19 @@ const View = {
         //Get a number of moves
         let numOfMoves = memoryFunction.showNumberOfMoves();
 
-        //Depending stars from moves
+       /* //Depending stars from moves
         if(36 > numOfMoves > 24) {
 
         } else if (numOfMoves > 36) {
 
-        }
+        }*/
         liElem.classList.add('open');
 
         //Add card to a list of openCards
         openCards.push(liElem);
 
         //Check if the cards similar of not
-        if(OpenCards.length === 2) {
+        if(openCards.length === 2) {
           let card1 = openCards[0];
           let card2 = openCards[1];
 
