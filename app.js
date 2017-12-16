@@ -80,9 +80,14 @@ $(document).ready(function(){
     ],
       init: function() {
         app.shuffle();
+        app.assignCards();
+        app.clickHandlers();
+        app.restartButton();
+        //app.checkMatch();
       },
 
-      shuffle: function() {
+
+     shuffle: function(array) {
       let random = 0;
       let temp = 0;
       for(i = 1; i < app.cards.length; i++) {
@@ -90,23 +95,58 @@ $(document).ready(function(){
         temp = app.cards[i];
         app.cards[i] = app.cards[random];
         app.cards[random] = temp;
-      }
-      app.assignCards();
-      
-    },
+      };  
+  },
+
       assignCards: function() {
         $('.card').each(function(index){
           $(this).attr('data-card-value', app.cards[index]);
           app.cards[index];
         });
-        app.clickHandlers();
       },
 
       clickHandlers: function(){
       $('.card').on('click', function(){
         $(this).addClass('open show');
-        }); 
-      }
+        });
+      },
+
+      restartButton: function() {
+        $('.restart').on('click', function(){
+          location.reload();  
+          //$(this).shuffle(cards);
+        });
+      },
+
+
+
+
     }
   app.init();
 });
+
+
+/*
+      // Shuffle function from http://stackoverflow.com/a/2450976
+    shuffle(array) {
+        let currentIndex = array.length,
+            temporaryValue, randomIndex;
+
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    },
+
+        checkMatch: function() {
+        if(app.cards.length ===2) {
+          let counter =
+        }
+      },
+
+    */
