@@ -252,11 +252,12 @@ footer {
   float: none;
   text-align: center;
   margin: 1em auto;
+  width: 45%;
 }
 
 .modal .winner {
 
-  font-size: 80px;
+  font-size: 2.5em;
   text-align: center;
   font-family: "Anton", sans-serif;
   color: white;
