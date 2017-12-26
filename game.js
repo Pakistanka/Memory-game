@@ -12,9 +12,10 @@
       this.$infoMessage = $('.info-message');
 			this.cardsArray = $.merge(cards, cards);
 			this.shuffleCards(this.cardsArray);
-      this.showNumOfMoves();
 			this.setup();
       this.GameTimer();
+      this.counter();
+      this.Stars();
 		},
 
 		shuffleCards: function(cardsArray){
@@ -59,21 +60,9 @@
 				if($(".matched").length == $(".card").length){
 					_.win();
 				}
-        counter();
 			}
 		},
 
-    showNumOfMoves: function() {
-      let moves = 0;
-      //let moves = moves;
-      moves % 2 === 0 ? moves /= 2 : null;
-      return moves;
-      //moves.html(" " + 'Moves');
-    },
-
-    counter: function() {
-      $countMoves.textContent = showNumOfMoves();
-    },
 
 		win: function(){
 			this.paused = true;
@@ -87,7 +76,7 @@
 			this.$overlay.show();
 			this.$modal.fadeIn("slow");
       // Congratulation message
-      //this.$infoMessage.text('You got ' + stars + ' with ' + moves + ' , after ' + GameTimer() + ' seconds!');
+      this.$infoMessage.text('You got ' + stars + ' with ' + moves + ' , after ' + GameTimer() + ' seconds!');
 		},
 
 		hideModal: function(){
@@ -100,7 +89,6 @@
 			this.shuffleCards(this.cardsArray);
 			this.setup();
 			this.$game.show("slow");
-      this.counter = 0;
       this.GameTimer();
 		},
 
@@ -161,7 +149,30 @@
 			current_time_played = mins + ':' + secs;
 			$('.timer-played').text(current_time_played);
 		  }, 500);
-	  }
+	  },
+
+/*
+  WHAT'S WRONG?
+
+*/
+    counter: function() {
+      let moves = $('.moves');
+
+      moves % 2 === 0 ? moves /= 2 : null;
+      moves.html(" " + 'Moves');
+    },
+
+    Stars: function() {
+      let stars = 3;
+
+      //Depending stars from moves
+        if(36 > numOfMoves > 24) {
+          return stars = 2;
+
+        } else if (numOfMoves > 36) {
+          return stars = 1;
+        }
+    }
 	};
 
 	let cards = [
