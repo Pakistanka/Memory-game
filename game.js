@@ -14,6 +14,7 @@
 			this.shuffleCards(this.cardsArray);
       this.showNumOfMoves();
 			this.setup();
+      this.GameTimer();
 		},
 
 		shuffleCards: function(cardsArray){
@@ -85,7 +86,8 @@
 		showModal: function(){
 			this.$overlay.show();
 			this.$modal.fadeIn("slow");
-      //this.$infoMessage.textContent('You got ' + stars + ' with ' + moves + ' , after ' + timer + ' seconds!');
+      // Congratulation message
+      //this.$infoMessage.text('You got ' + stars + ' with ' + moves + ' , after ' + GameTimer() + ' seconds!');
 		},
 
 		hideModal: function(){
@@ -99,9 +101,11 @@
 			this.setup();
 			this.$game.show("slow");
       this.counter = 0;
+      this.GameTimer();
 		},
 
-		// shuffle function 
+//@description: shuffle function 
+
 		shuffle: function(array){
 			let counter = array.length, temp, index;
 	   	// While there are elements in the array
@@ -118,7 +122,9 @@
 	    	return array;
 		},
 
-		//make a crid for the cards
+/*
+* @description make a crid for the cards    
+*/
     buildHTML: function(){
 			let frag = '';
 			this.$cards.each(function(k, v){
@@ -129,7 +135,33 @@
 				</div>';
 			});
 			return frag;
-		}
+		},
+
+/*
+* @description calculate time taken to complete a game
+*/
+
+	  GameTimer: function() {
+		  const game_start_time = new Date().getTime(); //get the current time when user clicked the first card
+
+		  timer = setInterval(function(){
+
+			let current_time = new Date().getTime();
+			let current_time_played = current_time - game_start_time; // calculate time elapsed
+			let hrs = Math.floor((current_time_played % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			let mins = Math.floor((current_time_played % (1000 * 60 * 60)) / (1000 * 60));
+			let secs = Math.floor((current_time_played % (1000 * 60)) / 1000);
+
+			time_value = hrs + ' hours ' + mins + ' mins ' + secs + ' secs '; // this is to display in the stats modal
+
+			if (secs < 10) {
+				secs = '0' + secs;
+			}
+
+			current_time_played = mins + ':' + secs;
+			$('.timer-played').text(current_time_played);
+		  }, 500);
+	  }
 	};
 
 	let cards = [
