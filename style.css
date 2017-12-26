@@ -142,7 +142,24 @@ h1 {
 .score-panel {
   text-align: left;
   width: 600px;
-  margin-bottom: 10px;
+  margin: 1em;
+  display: inline-block;
+}
+
+.timer {
+	width: 10em;
+	margin: 1em;
+	text-align: center;
+}
+
+.timer-played {
+	color: white;
+	font-size: 1.75em;
+}
+
+.steps {
+	float: left;
+	width: 35%;
 }
 
 .score {
@@ -153,11 +170,6 @@ h1 {
   width: 6em;
   float: left;
   height: 2.2em;
-}
-
-.steps {
-  display: block;
-  width: 250px;
 }
 
 .stars {
@@ -172,17 +184,17 @@ h1 {
   color: orange;
 }
 
+
 .restart {
   font-family: "Anton", sans-serif;
-  margin: 1em;
   padding: 0.3em 1em;
   display: block;
-  font-size: 1.25em;
-  border: none;
+  height: 3em;
+  width: 6em;
+  font-size: 1.5em;
   background: #87CEFA;
   background: -webkit-gradient(linear, left top, left bottom, from(#87CEFA), to( #4682B4));
   background: linear-gradient(#87CEFA, #4682B4);
-  border: 1px solid #222;
   border-radius: 5px;
   color: white;
   text-shadow: 0px 1px 0 black;
